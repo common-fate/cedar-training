@@ -1,0 +1,40 @@
+{
+  "MyApp": {
+    "entityTypes": {
+      "User": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "paid_billing_tier": {
+              "type": "Boolean"
+            }
+          }
+        },
+        "memberOfTypes": []
+      },
+      "Photo": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "is_public": {
+              "type": "Boolean"
+            }
+          }
+        },
+        "memberOfTypes": []
+      }
+    },
+    "actions": {}
+  },
+  "MyApp::Photos": {
+    "entityTypes": {},
+    "actions": {
+      "Read": {
+        "appliesTo": {
+          "principalTypes": ["MyApp::User"],
+          "resourceTypes": ["MyApp::Photo"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,2252 @@
+{
+  "AWS": {
+    "entityTypes": {
+      "Account": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            },
+            "org_unit": {
+              "type": "Entity",
+              "name": "AWS::OrgUnit"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "AWS::Organization"
+            },
+            "tag_keys": {
+              "type": "Set",
+              "element": {
+                "type": "String"
+              }
+            },
+            "tags": {
+              "type": "Set",
+              "element": {
+                "type": "Record",
+                "attributes": {
+                  "key": {
+                    "type": "String"
+                  },
+                  "value": {
+                    "type": "String"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "memberOfTypes": [
+          "AWS::Organization",
+          "AWS::OrgUnit"
+        ]
+      },
+      "OrgUnit": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "AWS::Organization"
+            },
+            "parent": {
+              "type": "Entity",
+              "name": "AWS::OrgUnit"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "AWS::Organization"
+        ]
+      },
+      "Organization": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "arn": {
+              "type": "String"
+            },
+            "name": {
+              "type": "String"
+            }
+          }
+        }
+      },
+      "VPC": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "account": {
+              "type": "Entity",
+              "name": "AWS::Account"
+            },
+            "name": {
+              "type": "String"
+            },
+            "region": {
+              "type": "String"
+            },
+            "tag_keys": {
+              "type": "Set",
+              "element": {
+                "type": "String"
+              }
+            },
+            "tags": {
+              "type": "Set",
+              "element": {
+                "type": "Record",
+                "attributes": {
+                  "key": {
+                    "type": "String"
+                  },
+                  "value": {
+                    "type": "String"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "memberOfTypes": [
+          "AWS::Account"
+        ]
+      }
+    },
+    "actions": {}
+  },
+  "AWS::IDC": {
+    "entityTypes": {
+      "AccountEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "AWS::IDC::PermissionSet"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "AWS::Account"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "AWS::Account"
+        ]
+      },
+      "AccountGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "AWS::IDC::PermissionSet"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "AWS::Account"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "AWS::Account"
+        ]
+      },
+      "Group": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "external_ids": {
+              "type": "Set",
+              "element": {
+                "type": "Record",
+                "attributes": {
+                  "id": {
+                    "type": "String"
+                  },
+                  "issuer": {
+                    "type": "String"
+                  }
+                }
+              }
+            },
+            "identity_store": {
+              "type": "Entity",
+              "name": "AWS::IDC::IdentityStore"
+            },
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "AWS::Organization"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "AWS::Organization"
+        ]
+      },
+      "GroupEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "AWS::IDC::GroupRole"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "AWS::IDC::Group"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "AWS::IDC::Group"
+        ]
+      },
+      "GroupGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "AWS::IDC::GroupRole"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "AWS::IDC::Group"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "AWS::IDC::Group"
+        ]
+      },
+      "GroupRole": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            }
+          }
+        }
+      },
+      "IdentityStore": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "organization": {
+              "type": "Entity",
+              "name": "AWS::Organization"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "AWS::Organization"
+        ]
+      },
+      "PermissionSet": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "description": {
+              "type": "String"
+            },
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "AWS::Organization"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "AWS::Organization"
+        ]
+      },
+      "User": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "email": {
+              "type": "String"
+            },
+            "emails": {
+              "type": "Set",
+              "element": {
+                "type": "Record",
+                "attributes": {
+                  "type": {
+                    "type": "String"
+                  },
+                  "value": {
+                    "type": "String"
+                  }
+                }
+              }
+            },
+            "external_ids": {
+              "type": "Set",
+              "element": {
+                "type": "Record",
+                "attributes": {
+                  "id": {
+                    "type": "String"
+                  },
+                  "issuer": {
+                    "type": "String"
+                  }
+                }
+              }
+            },
+            "identity_store": {
+              "type": "Entity",
+              "name": "AWS::IDC::IdentityStore"
+            },
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "AWS::Organization"
+            },
+            "timezone": {
+              "type": "String"
+            },
+            "title": {
+              "type": "String"
+            },
+            "user_type": {
+              "type": "String"
+            },
+            "username": {
+              "type": "String"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "AWS::Organization",
+          "AWS::IDC::IdentityStore",
+          "AWS::IDC::Group"
+        ]
+      }
+    },
+    "actions": {}
+  },
+  "AWS::RDS": {
+    "entityTypes": {
+      "Instance": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "account": {
+              "type": "Entity",
+              "name": "AWS::Account"
+            },
+            "database_name": {
+              "type": "String"
+            },
+            "engine": {
+              "type": "String"
+            },
+            "instance_identifier": {
+              "type": "String"
+            },
+            "name": {
+              "type": "String"
+            },
+            "region": {
+              "type": "String"
+            },
+            "tag_keys": {
+              "type": "Set",
+              "element": {
+                "type": "String"
+              }
+            },
+            "tags": {
+              "type": "Set",
+              "element": {
+                "type": "Record",
+                "attributes": {
+                  "key": {
+                    "type": "String"
+                  },
+                  "value": {
+                    "type": "String"
+                  }
+                }
+              }
+            },
+            "vpc": {
+              "type": "Entity",
+              "name": "AWS::VPC"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "AWS::VPC",
+          "AWS::Account"
+        ]
+      },
+      "InstanceEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "CF::Database::Role"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "AWS::RDS::Instance"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "AWS::RDS::Instance"
+        ]
+      },
+      "InstanceGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "CF::Database::Role"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "AWS::RDS::Instance"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "AWS::RDS::Instance"
+        ]
+      }
+    },
+    "actions": {}
+  },
+  "Access": {
+    "entityTypes": {},
+    "actions": {
+      "Activate": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::User"
+          ],
+          "resourceTypes": [
+            "AWS::IDC::AccountGrant",
+            "AWS::IDC::GroupGrant",
+            "AWS::RDS::InstanceGrant",
+            "Auth0::OrganizationGrant",
+            "DataStax::OrganizationGrant",
+            "Entra::GroupGrant",
+            "GCP::BigQuery::DatasetGrant",
+            "GCP::BigQuery::TableGrant",
+            "GCP::FolderGrant",
+            "GCP::FolderRoleGroupGrant",
+            "GCP::OrganizationGrant",
+            "GCP::ProjectGrant",
+            "GCP::ProjectRoleGroupGrant",
+            "Okta::GroupGrant",
+            "Test::VaultGrant"
+          ]
+        }
+      },
+      "Approve": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::User"
+          ],
+          "resourceTypes": [
+            "AWS::IDC::AccountGrant",
+            "AWS::IDC::GroupGrant",
+            "AWS::RDS::InstanceGrant",
+            "Auth0::OrganizationGrant",
+            "DataStax::OrganizationGrant",
+            "Entra::GroupGrant",
+            "GCP::BigQuery::DatasetGrant",
+            "GCP::BigQuery::TableGrant",
+            "GCP::FolderGrant",
+            "GCP::FolderRoleGroupGrant",
+            "GCP::OrganizationGrant",
+            "GCP::ProjectGrant",
+            "GCP::ProjectRoleGroupGrant",
+            "Okta::GroupGrant",
+            "Test::VaultGrant"
+          ]
+        }
+      },
+      "BreakglassActivate": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::User"
+          ],
+          "resourceTypes": [
+            "AWS::IDC::AccountGrant",
+            "AWS::IDC::GroupGrant",
+            "AWS::RDS::InstanceGrant",
+            "Auth0::OrganizationGrant",
+            "DataStax::OrganizationGrant",
+            "Entra::GroupGrant",
+            "GCP::BigQuery::DatasetGrant",
+            "GCP::BigQuery::TableGrant",
+            "GCP::FolderGrant",
+            "GCP::FolderRoleGroupGrant",
+            "GCP::OrganizationGrant",
+            "GCP::ProjectGrant",
+            "GCP::ProjectRoleGroupGrant",
+            "Okta::GroupGrant",
+            "Test::VaultGrant"
+          ]
+        }
+      },
+      "Close": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::User",
+            "CF::Service"
+          ],
+          "resourceTypes": [
+            "AWS::IDC::AccountGrant",
+            "AWS::IDC::GroupGrant",
+            "AWS::RDS::InstanceGrant",
+            "Auth0::OrganizationGrant",
+            "DataStax::OrganizationGrant",
+            "Entra::GroupGrant",
+            "GCP::BigQuery::DatasetGrant",
+            "GCP::BigQuery::TableGrant",
+            "GCP::FolderGrant",
+            "GCP::FolderRoleGroupGrant",
+            "GCP::OrganizationGrant",
+            "GCP::ProjectGrant",
+            "GCP::ProjectRoleGroupGrant",
+            "Okta::GroupGrant",
+            "Test::VaultGrant"
+          ]
+        }
+      },
+      "DelegatedRequest": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::Service"
+          ],
+          "resourceTypes": [
+            "CF::User"
+          ]
+        }
+      },
+      "Extend": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::User"
+          ],
+          "resourceTypes": [
+            "AWS::IDC::AccountGrant",
+            "AWS::IDC::GroupGrant",
+            "AWS::RDS::InstanceGrant",
+            "Auth0::OrganizationGrant",
+            "DataStax::OrganizationGrant",
+            "Entra::GroupGrant",
+            "GCP::BigQuery::DatasetGrant",
+            "GCP::BigQuery::TableGrant",
+            "GCP::FolderGrant",
+            "GCP::FolderRoleGroupGrant",
+            "GCP::OrganizationGrant",
+            "GCP::ProjectGrant",
+            "GCP::ProjectRoleGroupGrant",
+            "Okta::GroupGrant",
+            "Test::VaultGrant"
+          ]
+        }
+      },
+      "Request": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::User"
+          ],
+          "resourceTypes": [
+            "AWS::IDC::AccountEntitlement",
+            "AWS::IDC::GroupEntitlement",
+            "AWS::RDS::InstanceEntitlement",
+            "Auth0::OrganizationEntitlement",
+            "DataStax::OrganizationEntitlement",
+            "Entra::GroupEntitlement",
+            "GCP::BigQuery::DatasetEntitlement",
+            "GCP::BigQuery::TableEntitlement",
+            "GCP::FolderEntitlement",
+            "GCP::FolderRoleGroupEntitlement",
+            "GCP::OrganizationEntitlement",
+            "GCP::ProjectEntitlement",
+            "GCP::ProjectRoleGroupEntitlement",
+            "Okta::GroupEntitlement",
+            "Test::VaultEntitlement"
+          ]
+        }
+      }
+    }
+  },
+  "Auth0": {
+    "entityTypes": {
+      "Organization": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            },
+            "slug": {
+              "type": "String"
+            },
+            "tenant": {
+              "type": "Entity",
+              "name": "Auth0::Tenant"
+            }
+          }
+        }
+      },
+      "OrganizationEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "Auth0::Role"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "Auth0::Organization"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "Auth0::Organization"
+        ]
+      },
+      "OrganizationGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "Auth0::Role"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "Auth0::Organization"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "Auth0::Organization"
+        ]
+      },
+      "Role": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            }
+          }
+        }
+      },
+      "Tenant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            }
+          }
+        }
+      }
+    },
+    "actions": {}
+  },
+  "CF": {
+    "entityTypes": {
+      "Service": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            }
+          }
+        }
+      },
+      "User": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "email": {
+              "type": "String"
+            },
+            "family_name": {
+              "type": "String"
+            },
+            "given_name": {
+              "type": "String"
+            },
+            "name": {
+              "type": "String"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "DataStax::User",
+          "PagerDuty::User",
+          "AWS::IDC::User",
+          "Okta::User",
+          "Entra::User",
+          "OpsGenie::User"
+        ]
+      }
+    },
+    "actions": {}
+  },
+  "CF::Admin": {
+    "entityTypes": {},
+    "actions": {
+      "Read": {
+        "appliesTo": {
+          "principalTypes": null,
+          "resourceTypes": null
+        }
+      }
+    }
+  },
+  "CF::Authz": {
+    "entityTypes": {},
+    "actions": {
+      "GetEvaluation": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::User",
+            "CF::Service"
+          ],
+          "resourceTypes": [
+            "CF::Service"
+          ]
+        },
+        "memberOf": [
+          {
+            "type": "CF::Admin::Action",
+            "id": "Read"
+          }
+        ]
+      },
+      "PreviewAccess": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::User",
+            "CF::Service"
+          ],
+          "resourceTypes": [
+            "CF::Service"
+          ]
+        },
+        "memberOf": [
+          {
+            "type": "CF::Admin::Action",
+            "id": "Read"
+          }
+        ]
+      }
+    }
+  },
+  "CF::Control::DiagnosticService": {
+    "entityTypes": {},
+    "actions": {
+      "GetOAuthTokenMetadata": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::User",
+            "CF::Service"
+          ],
+          "resourceTypes": [
+            "CF::Service"
+          ]
+        },
+        "memberOf": [
+          {
+            "type": "CF::Admin::Action",
+            "id": "Read"
+          }
+        ]
+      },
+      "ListBackgroundJobs": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::User",
+            "CF::Service"
+          ],
+          "resourceTypes": [
+            "CF::Service"
+          ]
+        },
+        "memberOf": [
+          {
+            "type": "CF::Admin::Action",
+            "id": "Read"
+          }
+        ]
+      }
+    }
+  },
+  "CF::Control::Integration::Reset::ResetService": {
+    "entityTypes": {},
+    "actions": {
+      "CancelBackgroundJob": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::User",
+            "CF::Service"
+          ],
+          "resourceTypes": [
+            "CF::Service"
+          ]
+        }
+      },
+      "RelinkEntraUsers": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::User",
+            "CF::Service"
+          ],
+          "resourceTypes": [
+            "CF::Service"
+          ]
+        }
+      },
+      "RemoveOAuthToken": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::User",
+            "CF::Service"
+          ],
+          "resourceTypes": [
+            "CF::Service"
+          ]
+        }
+      },
+      "ResetEntraUsers": {
+        "appliesTo": {
+          "principalTypes": [
+            "CF::User",
+            "CF::Service"
+          ],
+          "resourceTypes": [
+            "CF::Service"
+          ]
+        }
+      }
+    }
+  },
+  "CF::Database": {
+    "entityTypes": {
+      "Role": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            }
+          }
+        }
+      }
+    },
+    "actions": {}
+  },
+  "DataStax": {
+    "entityTypes": {
+      "Organization": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            }
+          }
+        }
+      },
+      "OrganizationEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "DataStax::Role"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "DataStax::Organization"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "DataStax::Organization"
+        ]
+      },
+      "OrganizationGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "DataStax::Role"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "DataStax::Organization"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "DataStax::Organization"
+        ]
+      },
+      "Role": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "DataStax::Organization"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "DataStax::Organization"
+        ]
+      },
+      "User": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "email": {
+              "type": "String"
+            },
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "DataStax::Organization"
+            },
+            "roles": {
+              "type": "Set",
+              "element": {
+                "type": "Record",
+                "attributes": {
+                  "id": {
+                    "type": "String"
+                  },
+                  "name": {
+                    "type": "String"
+                  }
+                }
+              }
+            },
+            "status": {
+              "type": "String"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "DataStax::Organization"
+        ]
+      }
+    },
+    "actions": {}
+  },
+  "Entra": {
+    "entityTypes": {
+      "Group": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "created_at": {
+              "type": "Long"
+            },
+            "name": {
+              "type": "String"
+            },
+            "updated_at": {
+              "type": "Long"
+            }
+          }
+        }
+      },
+      "GroupEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "Entra::GroupRole"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "Entra::Group"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "Entra::Group"
+        ]
+      },
+      "GroupGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "Entra::GroupRole"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "Entra::Group"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "Entra::Group"
+        ]
+      },
+      "GroupRole": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            }
+          }
+        }
+      },
+      "Tenant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {}
+        }
+      },
+      "User": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "active": {
+              "type": "Boolean"
+            },
+            "created_at": {
+              "type": "Long"
+            },
+            "email": {
+              "type": "String"
+            },
+            "external_id": {
+              "type": "String"
+            },
+            "family_name": {
+              "type": "String"
+            },
+            "given_name": {
+              "type": "String"
+            },
+            "name": {
+              "type": "String"
+            },
+            "updated_at": {
+              "type": "Long"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "Entra::Group"
+        ]
+      }
+    },
+    "actions": {}
+  },
+  "GCP": {
+    "entityTypes": {
+      "Folder": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "GCP::Organization"
+            },
+            "parent": {
+              "type": "Entity",
+              "name": "GCP::Folder"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Folder",
+          "GCP::Organization"
+        ]
+      },
+      "FolderEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "GCP::Role"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "GCP::Folder"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Folder"
+        ]
+      },
+      "FolderGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "GCP::Role"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "GCP::Folder"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Folder"
+        ]
+      },
+      "FolderRoleGroupEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "GCP::RoleGroup"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "GCP::Folder"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Folder"
+        ]
+      },
+      "FolderRoleGroupGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "GCP::RoleGroup"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "GCP::Folder"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Folder"
+        ]
+      },
+      "Organization": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            }
+          }
+        }
+      },
+      "OrganizationEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "GCP::Role"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "GCP::Organization"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Organization"
+        ]
+      },
+      "OrganizationGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "GCP::Role"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "GCP::Organization"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Organization"
+        ]
+      },
+      "Project": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "label_keys": {
+              "type": "Set",
+              "element": {
+                "type": "String"
+              }
+            },
+            "labels": {
+              "type": "Set",
+              "element": {
+                "type": "Record",
+                "attributes": {
+                  "key": {
+                    "type": "String"
+                  },
+                  "value": {
+                    "type": "String"
+                  }
+                }
+              }
+            },
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "GCP::Organization"
+            },
+            "parent": {
+              "type": "Entity",
+              "name": "GCP::Folder"
+            },
+            "project_number": {
+              "type": "String"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Organization",
+          "GCP::Folder"
+        ]
+      },
+      "ProjectEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "GCP::Role"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "GCP::Project"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Project"
+        ]
+      },
+      "ProjectGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "GCP::Role"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "GCP::Project"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Project"
+        ]
+      },
+      "ProjectRoleGroupEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "GCP::RoleGroup"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "GCP::Project"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Project"
+        ]
+      },
+      "ProjectRoleGroupGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "GCP::RoleGroup"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "GCP::Project"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Project"
+        ]
+      },
+      "Role": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "description": {
+              "type": "String"
+            },
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "GCP::Organization"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Organization"
+        ]
+      },
+      "RoleGroup": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "GCP::Organization"
+            },
+            "role_ids": {
+              "type": "Set",
+              "element": {
+                "type": "String"
+              }
+            }
+          }
+        }
+      },
+      "TagKey": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "description": {
+              "type": "String"
+            },
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "GCP::Organization"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Organization"
+        ]
+      },
+      "TagValue": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "description": {
+              "type": "String"
+            },
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "GCP::Organization"
+            },
+            "tag_key": {
+              "type": "Entity",
+              "name": "GCP::TagKey"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Organization",
+          "GCP::TagKey"
+        ]
+      }
+    },
+    "actions": {}
+  },
+  "GCP::BigQuery": {
+    "entityTypes": {
+      "Dataset": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "location": {
+              "type": "String"
+            },
+            "name": {
+              "type": "String"
+            },
+            "project": {
+              "type": "Entity",
+              "name": "GCP::Project"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Project"
+        ]
+      },
+      "DatasetEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "GCP::Role"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "GCP::BigQuery::Dataset"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::BigQuery::Dataset"
+        ]
+      },
+      "DatasetGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "GCP::Role"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "GCP::BigQuery::Dataset"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::BigQuery::Dataset"
+        ]
+      },
+      "Table": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "dataset": {
+              "type": "Entity",
+              "name": "GCP::BigQuery::Dataset"
+            },
+            "location": {
+              "type": "String"
+            },
+            "name": {
+              "type": "String"
+            },
+            "project": {
+              "type": "Entity",
+              "name": "GCP::Project"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::Project",
+          "GCP::BigQuery::Dataset"
+        ]
+      },
+      "TableEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "GCP::Role"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "GCP::BigQuery::Table"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::BigQuery::Table"
+        ]
+      },
+      "TableGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "GCP::Role"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "GCP::BigQuery::Table"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "GCP::BigQuery::Table"
+        ]
+      }
+    },
+    "actions": {}
+  },
+  "Okta": {
+    "entityTypes": {
+      "Group": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "Okta::Organization"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "Okta::Organization"
+        ]
+      },
+      "GroupEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "Okta::GroupRole"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "Okta::Group"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "Okta::Group"
+        ]
+      },
+      "GroupGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "Okta::GroupRole"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "Okta::Group"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "Okta::Group"
+        ]
+      },
+      "GroupRole": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            }
+          }
+        }
+      },
+      "Organization": {
+        "shape": {
+          "type": "Record",
+          "attributes": {}
+        }
+      },
+      "User": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "email": {
+              "type": "String"
+            },
+            "family_name": {
+              "type": "String"
+            },
+            "given_name": {
+              "type": "String"
+            },
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "Okta::Organization"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "Okta::Organization",
+          "Okta::Group"
+        ]
+      }
+    },
+    "actions": {}
+  },
+  "OpsGenie": {
+    "entityTypes": {
+      "OnCall": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            },
+            "schedule": {
+              "type": "Entity",
+              "name": "OpsGenie::Schedule"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "OpsGenie::Schedule"
+        ]
+      },
+      "Schedule": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "description": {
+              "type": "String"
+            },
+            "enabled": {
+              "type": "Boolean"
+            },
+            "name": {
+              "type": "String"
+            },
+            "timezone": {
+              "type": "String"
+            }
+          }
+        }
+      },
+      "User": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "blocked": {
+              "type": "Boolean"
+            },
+            "created_at": {
+              "type": "Long"
+            },
+            "email": {
+              "type": "String"
+            },
+            "name": {
+              "type": "String"
+            },
+            "role": {
+              "type": "String"
+            },
+            "tags": {
+              "type": "Set",
+              "element": {
+                "type": "String"
+              }
+            },
+            "timezone": {
+              "type": "String"
+            },
+            "verified": {
+              "type": "Boolean"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "OpsGenie::OnCall"
+        ]
+      }
+    },
+    "actions": {}
+  },
+  "PagerDuty": {
+    "entityTypes": {
+      "OnCall": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            },
+            "schedule": {
+              "type": "Entity",
+              "name": "PagerDuty::Schedule"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "PagerDuty::Schedule"
+        ]
+      },
+      "Role": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            }
+          }
+        }
+      },
+      "Schedule": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            }
+          }
+        }
+      },
+      "Team": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            }
+          }
+        }
+      },
+      "User": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "email": {
+              "type": "String"
+            },
+            "job_title": {
+              "type": "String"
+            },
+            "name": {
+              "type": "String"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "PagerDuty::Role"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "PagerDuty::Team",
+          "PagerDuty::OnCall",
+          "PagerDuty::OnCall::All"
+        ]
+      }
+    },
+    "actions": {}
+  },
+  "PagerDuty::OnCall": {
+    "entityTypes": {
+      "All": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "PagerDuty::Schedule"
+        ]
+      }
+    },
+    "actions": {}
+  },
+  "Test": {
+    "entityTypes": {
+      "Organization": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            }
+          }
+        }
+      },
+      "Role": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "Test::Organization"
+            }
+          }
+        }
+      },
+      "Vault": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": {
+              "type": "String"
+            },
+            "organization": {
+              "type": "Entity",
+              "name": "Test::Organization"
+            }
+          }
+        }
+      },
+      "VaultEntitlement": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "role": {
+              "type": "Entity",
+              "name": "Test::Role"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "Test::Vault"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "Test::Vault"
+        ]
+      },
+      "VaultGrant": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "approved": {
+              "type": "Boolean"
+            },
+            "duration": {
+              "type": "Long"
+            },
+            "expires_at": {
+              "type": "Long",
+              "required": false
+            },
+            "principal": {
+              "type": "Entity",
+              "name": "CF::User"
+            },
+            "provisioning_status": {
+              "type": "String"
+            },
+            "requested_at": {
+              "type": "Long"
+            },
+            "role": {
+              "type": "Entity",
+              "name": "Test::Role"
+            },
+            "status": {
+              "type": "String"
+            },
+            "target": {
+              "type": "Entity",
+              "name": "Test::Vault"
+            }
+          }
+        },
+        "memberOfTypes": [
+          "Test::Vault"
+        ]
+      }
+    },
+    "actions": {}
+  }
+}
